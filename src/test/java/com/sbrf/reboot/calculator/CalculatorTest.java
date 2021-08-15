@@ -30,4 +30,19 @@ class CalculatorTest {
     void classHasSevenMethods(){
         assertEquals(7,Calculator.class.getMethods().length-Object.class.getMethods().length);
     }
+
+    @Test
+    void getBitwiseAnd() {
+        assertEquals(4, Calculator.getBitwiseAnd(4, 5));
+    }
+
+    @Test
+    void getBitwiseOr() {
+        assertEquals(5, Calculator.getBitwiseOr(4, 5));
+    }
+
+    @Test
+    void getBitwiseXor() {
+        assertEquals(1, Calculator.getBitwiseXor(4, 5));
+    }
 }

@@ -2,6 +2,7 @@ package com.sbrf.reboot.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
@@ -32,7 +33,7 @@ class AccountServiceTest {
 
         when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
 
-        assertTrue(accountService.isAccountExist(1L, account));
+        Assertions.assertTrue(accountService.isAccountExist(1L, account));
     }
 
     @Test
@@ -42,6 +43,6 @@ class AccountServiceTest {
 
         when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
 
-        assertFalse(accountService.isAccountExist(1L, new Account("ACC456NUM")));
+        Assertions.assertFalse(accountService.isAccountExist(1L, new Account("ACC456NUM")));
     }
 }

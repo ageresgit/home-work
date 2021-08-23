@@ -1,11 +1,14 @@
 package com.sbrf.reboot.service;
 
+import com.sbrf.reboot.account.Account;
+import com.sbrf.reboot.repository.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,9 +29,9 @@ class AccountServiceTest {
     }
 
     @Test
-    void bookExist() {
+    void bookExist() throws IOException {
         Account account = new Account("ACC1234NUM");
-        Set<Account> accounts = new HashSet();
+        Set<Account> accounts = new HashSet<>();
         accounts.add(account);
 
         when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
@@ -37,8 +40,8 @@ class AccountServiceTest {
     }
 
     @Test
-    void bookNotExist() {
-        Set<Account> accounts = new HashSet();
+    void bookNotExist() throws IOException {
+        Set<Account> accounts = new HashSet<>();
         accounts.add(new Account("ACC1234NUM"));
 
         when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);

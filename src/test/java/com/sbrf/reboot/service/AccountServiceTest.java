@@ -1,6 +1,6 @@
 package com.sbrf.reboot.service;
 
-import com.sbrf.reboot.dto.Account;
+import com.sbrf.reboot.account.Account;
 import com.sbrf.reboot.repository.AccountRepository;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
@@ -101,4 +101,18 @@ class AccountServiceTest {
         assertTrue(allAccountsByDateMoreThen.contains(account3));
     }
 
+    @SneakyThrows
+    @Test
+    void getTotalBalanceByClient() {
+
+        Set<Account> accounts = new HashSet<Account>() {{
+            add(Account.builder().clientId(1L).id(1L).balance(BigDecimal.TEN).build());
+            add(Account.builder().clientId(1L).id(2L).balance(new BigDecimal(89)).build());
+            add(Account.builder().clientId(1L).id(3L).balance(BigDecimal.ONE).build());
+        }};
+
+        when(accountRepository.getAllAccountsByClientId(1L)).thenReturn(accounts);
+
+        assertEquals(new BigDecimal(100), accountService.getTotalBalanceByClient(1L));
+    }
 }
